@@ -1,0 +1,194 @@
+@import '@/assets/styles/base.css';
+
+/* semantic properties */
+:root {
+  /* colors */
+
+  /* colors -- backgrounds */
+  --color-background-primary: hsl(var(--color-grey-50));
+  --color-background-secondary: hsl(var(--color-blue-950));
+  --color-background-highlighted: hsl(var(--color-blue-950));
+  --color-background-active: hsl(var(--color-blue-350));
+  --color-background-current: hsl(var(--color-orange-400));
+  --color-background-selected: hsl(var(--color-blue-800));
+  --color-background-accent: hsl(var(--color-blue-100));
+  --color-background-option: hsl(var(--color-blue-300));
+  --color-background-tile-top: hsl(var(--color-blue-800));
+  --color-background-tile-paired: hsl(var(--color-blue-300));
+  --color-background-button-highlighted: hsl(var(--color-orange-400));
+  --color-background-button-highlighted-active: hsl(var(--color-orange-300));
+  --color-background-dialog: hsl(var(--color-grey-100));
+  --color-background-backdrop: hsl(var(--color-black) / 0.5);
+
+  /* colors -- text */
+  --color-text-primary: hsl(var(--color-blue-800));
+  --color-text-secondary: hsl(var(--color-grey-50));
+  --color-text-highlighted: hsl(var(--color-grey-50));
+  --color-text-active: hsl(var(--color-white));
+  --color-text-current: hsl(var(--color-grey-50));
+  --color-text-label: hsl(var(--color-blue-400));
+  --color-text-value: hsl(var(--color-blue-800));
+  --color-text-heading: hsl(var(--color-blue-950));
+
+  /* colors -- text -- derivative of prior semantic colors */
+  --color-text-subheading: var(--color-text-label);
+
+  /* sizing/spacing */
+
+  /* app defaults */
+  --inline-size-app-max: 1024px; /* 1024px */
+  --inline-size-app-gutter: var(--space-300); /* 24px */
+  --block-size-app-padding: var(--space-300); /* 24px */
+
+  /* start view */
+  --inline-size-start-max: 654px;
+
+  /* buttons */
+  --button-block-size: 52px;
+  --button-block-size-big: 70px;
+  --button-block-size-menu: 40px;
+  --button-inline-size-primary: 127px;
+  --button-inline-size-secondary: 149px;
+  --button-inline-size-big: 100%;
+  --button-inline-size-full: 100%;
+
+  /* game view */
+  --inline-size-game-header-max: 1110px;
+  --inline-size-game-main-max: 572px;
+  --inline-size-game-footer-max: 1116px;
+  --inline-size-game-gutter: var(--space-300); /* 24px */
+
+  /* typography */
+  --text-preset1-fs: var(--fs-900);
+  --text-preset2-fs: var(--fs-800);
+  --text-preset3-fs: var(--fs-750);
+  --text-preset4-fs: var(--fs-700);
+  --text-preset5-fs: var(--fs-600);
+  --text-preset6-fs: var(--fs-550);
+  --text-preset7-fs: var(--fs-500);
+  --text-preset8-fs: var(--fs-450);
+  --text-preset9-fs: var(--fs-400);
+  --text-preset10-fs: var(--fs-300);
+  --text-preset11-fs: var(--fs-200);
+  --text-preset12-fs: var(--fs-150);
+
+  --text-preset13-fs: var(--fs-100);
+  --text-preset13-ls: var(--ls-expanded);
+}
+
+/* viewport: mobile -> tablet */
+/* @media (min-width: 40rem) {
+  :root {
+  }
+} */
+
+/* viewport: tablet -> desktop */
+/* @media (min-width: 60rem) {
+  :root {
+  }
+} */
+
+/* -------------------- */
+/* Typography           */
+/* -------------------- */
+
+.text-preset1 {
+  font-size: var(--text-preset1-fs);
+}
+
+.text-preset2 {
+  font-size: var(--text-preset2-fs);
+}
+
+.text-preset3 {
+  font-size: var(--text-preset3-fs);
+}
+
+.text-preset4 {
+  font-size: var(--text-preset4-fs);
+}
+
+.text-preset5 {
+  font-size: var(--text-preset5-fs);
+}
+
+.text-preset6 {
+  font-size: var(--text-preset6-fs);
+}
+
+.text-preset7 {
+  font-size: var(--text-preset7-fs);
+}
+
+.text-preset8 {
+  font-size: var(--text-preset8-fs);
+}
+
+.text-preset9 {
+  font-size: var(--text-preset9-fs);
+}
+
+.text-preset10 {
+  font-size: var(--text-preset10-fs);
+}
+
+.text-preset11 {
+  font-size: var(--text-preset11-fs);
+}
+
+.text-preset12 {
+  font-size: var(--text-preset12-fs);
+}
+
+.text-preset13 {
+  font-size: var(--text-preset1-fs);
+  letter-spacing: var(--text-preset1-ls);
+}
+
+/* -------------------- */
+/* Body / App           */
+/* -------------------- */
+
+body {
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+
+  font-family: var(--ff-base);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-regular);
+  letter-spacing: var(--ls-regular);
+}
+
+.app {
+  inline-size: 100%;
+  min-block-size: 100dvh;
+}
+
+.app__container {
+  /* customizable properties */
+
+  /* sizing/spacing */
+  --inline-size-max: var(--inline-size-app-max, 1024px);
+  --inline-size-gutter: var(--inline-size-app-gutter, 1.5rem);
+  --block-size-padding: var(--block-size-app-padding, 1.5rem);
+
+  /* colors */
+  --view-color-background: var(--color-background-primary);
+  --view-color-text: var(--color-text-primary);
+
+  min-block-size: 100dvh;
+  background: var(--view-color-background);
+  color: var(--view-color-text);
+
+  display: grid;
+  align-content: center;
+
+  /* block size + padding */
+  padding-block: var(--block-size-padding);
+}
+
+.app__container > * {
+  /* inline size + padding */
+  inline-size: min(100% - 2 * var(--inline-size-gutter), var(--inline-size-max));
+  margin-inline: auto;
+}
