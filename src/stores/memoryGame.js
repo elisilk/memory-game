@@ -95,7 +95,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
         numMoves: 0,
         numPairs: 0,
       }))
-      this.stats.map((item, index) => (item.player = index + 1))
+      this.stats.forEach((item, index) => (item.player = index + 1))
 
       // reset the timer
       this.timeStarted = null

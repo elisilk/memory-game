@@ -10,7 +10,7 @@ import GameCardStart from '@/components/GameCardStart.vue'
     </header>
 
     <main class="app__main">
-      <h1 class="sr-only">Start Game</h1>
+      <h1 class="sr-only">Memory Game Setup</h1>
       <GameCardStart />
     </main>
   </div>
