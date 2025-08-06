@@ -1,10 +1,14 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import AppLogo from '@/components/AppLogo.vue'
 import GameCardStart from '@/components/GameCardStart.vue'
 
 onMounted(() => {
   document.body.dataset.theme = 'secondary'
+})
+
+onUnmounted(() => {
+  delete document.body.dataset.theme
 })
 </script>
 

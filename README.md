@@ -132,7 +132,18 @@ Specific enhancements I'd like to make (feature requests):
 - [ ] Read in the icons programmatically rather than hard-coding a static list.
 - [x] Have the icons list and their associated components be handled in one place so there is just one source of truth. Solved by using [Async Components](https://vuejs.org/guide/components/async).
 - [ ] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
-- [ ] Make sure the app fills up the entire block size of the viewport, especially/including on a mobile device. Or at least, and perhaps better, just make sure to update the `body` background color
+- [x] Make sure the app fills up the entire block size of the viewport, especially/including on a mobile device. Or at least, and perhaps better, just make sure to update the `body` background color
+  - So my solution to this was not straightforward. I looked into a nummber of different ideas, but ultimately landed on setting the `background-color` of the `body` (rather than the App container) through the use of a data attribute that I could then style in my global css.
+    - Viewport dimensions
+      - [The large, small, and dynamic viewport units](https://web.dev/blog/viewport-units)
+      - [The trick to viewport units on mobile](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
+      - [Understanding `dvh`: The CSS Dynamic Viewport Height](https://mayank1513.medium.com/understanding-dvh-the-css-dynamic-viewport-height-9ddf70a77c6c)
+    - The Apple iPhone "Notch"
+      - [Rendering Sites Fullscreen in Safari on iPhone X / Introducing “User Agent Variables” (CSS Environment Variables)](https://www.bram.us/2017/09/14/introducing-user-agent-variables-rendering-sites-fullscreen-in-safari-on-iphone-x/)
+    - Using data attributes
+      - [Lifecycle Hooks](https://vuejs.org/guide/essentials/lifecycle)
+      - [HTMLElement: dataset property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)
+      - [Use data attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/How_to/Use_data_attributes)
 - [x] Include an open graph image for better sharing of the site
   - [The Open Graph protocol](https://ogp.me/)
   - [The Ultimate Guide to OG Image Dimensions (2024 Update)](https://www.ogimage.gallery/libary/the-ultimate-guide-to-og-image-dimensions-2024-update)
