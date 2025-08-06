@@ -40,7 +40,7 @@ watch(
 </script>
 
 <template>
-  <dialog class="end-game-dialog" ref="end-game-dialog">
+  <dialog class="end-game-dialog" ref="end-game-dialog" closedby="any">
     <div class="end-game-dialog__container">
       <div class="end-game-dialog__header">
         <h2 class="end-game-dialog__heading"><slot name="heading">Congrats!</slot></h2>

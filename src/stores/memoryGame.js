@@ -29,6 +29,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
     delayId: null,
     /** @type {{ player: number, numMoves: number, numPairs: number }[]} */
     stats: [],
+    soloBests: null,
   }),
   getters: {
     gameboardSize(state) {
