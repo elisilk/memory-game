@@ -258,18 +258,6 @@ export const useMemoryGameStore = defineStore('memoryGame', {
           this.currentMove.tile2Id,
         )
 
-        // if a pair was found, so ...
-        //   - set both tiles to paired
-        //   - set both tiles as highlighted
-        //   - add to the current player's pairs count
-        //   - check if game is over, if so, end the game
-        //   - reset current move (keeping current player)
-
-        // else no pair was found, so ...
-        //   - wait some time, then flip both tiles back over (and unlock them?)
-        //   - unlock all the face down tiles
-        //   - reset current move (moving to next player)
-
         if (this.currentMove.isPair) {
           // a pair was found
 

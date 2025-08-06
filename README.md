@@ -129,7 +129,7 @@ Specific enhancements I'd like to make (feature requests):
 - [ ] Read in the icons programmatically rather than hard-coding a static list.
 - [x] Have the icons list and their associated components be handled in one place so there is just one source of truth. Solved by using [Async Components](https://vuejs.org/guide/components/async).
 - [ ] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
-- [ ] Make sure the app fills up the entire block size of the viewport, especially/including on a mobile device
+- [ ] Make sure the app fills up the entire block size of the viewport, especially/including on a mobile device. Or at least, and perhaps better, just make sure to update the `body` background color
 - [ ] Include an open graph image for better sharing of the site
 
 More general ideas I want to consider:
@@ -138,6 +138,9 @@ Hmm 🤔 ...
 
 - [ ] Read and incorporate the Vue [Style Guide](https://vuejs.org/style-guide/) into the application
 - [ ] Finish watching and learning from Vue School's [Vue Router 4 for Everyone: Master Routing in Vue.js](https://vueschool.io/courses/vue-router-4-for-everyone) course
+- [ ] Improve my skills with Git
+  - using git diff to see changes
+  - combining multiple commits into a single push
 
 ### Useful resources
 
