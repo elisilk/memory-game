@@ -3,45 +3,8 @@ import { computed } from 'vue'
 
 import { useMemoryGameStore } from '@/stores/memoryGame'
 
-import IconAirplane from '@/components/IconAirplane.vue'
-import IconAlarmClock from '@/components/IconAlarmClock.vue'
-import IconAnchor from '@/components/IconAnchor.vue'
-import IconBug from '@/components/IconBug.vue'
-import IconCar from '@/components/IconCar.vue'
-import IconEye from '@/components/IconEye.vue'
-import IconFlask from '@/components/IconFlask.vue'
-import IconGhost from '@/components/IconGhost.vue'
-import IconHeart from '@/components/IconHeart.vue'
-import IconHippo from '@/components/IconHippo.vue'
-import IconLira from '@/components/IconLira.vue'
-import IconMagnet from '@/components/IconMagnet.vue'
-import IconMoon from '@/components/IconMoon.vue'
-import IconSnowflake from '@/components/IconSnowflake.vue'
-import IconSpockHand from '@/components/IconSpockHand.vue'
-import IconSun from '@/components/IconSun.vue'
-import IconTrophy from '@/components/IconTrophy.vue'
-import IconUmbrella from '@/components/IconUmbrella.vue'
-
-const icons = {
-  airplane: IconAirplane,
-  'alarm clock': IconAlarmClock,
-  anchor: IconAnchor,
-  bug: IconBug,
-  car: IconCar,
-  eye: IconEye,
-  flask: IconFlask,
-  ghost: IconGhost,
-  heart: IconHeart,
-  hippo: IconHippo,
-  lira: IconLira,
-  magnet: IconMagnet,
-  moon: IconMoon,
-  snowflake: IconSnowflake,
-  'spock hand': IconSpockHand,
-  sun: IconSun,
-  trophy: IconTrophy,
-  umbrella: IconUmbrella,
-}
+import iconComponentMap from '@/utils/iconComponentMap.js'
+import { defineAsyncComponent } from 'vue'
 
 const props = defineProps({
   tile: {
@@ -58,7 +21,11 @@ const tileLabelId = computed(() => tileId.value + '-label')
 
 const tileLabel = computed(() => `Tile row ${props.tile.row} column ${props.tile.col}`)
 
-const tileType = computed(() => (memoryGame.theme === 'numbers' ? 'span' : icons[props.tile.value]))
+const tileType = computed(() =>
+  memoryGame.theme === 'numbers'
+    ? 'span'
+    : defineAsyncComponent(iconComponentMap[props.tile.value]),
+)
 
 const tileValue = computed(() => props.tile.value)
 

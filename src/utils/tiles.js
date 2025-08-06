@@ -1,25 +1,7 @@
 import { generateNumArray, pickNRandomElements, shuffle, duplicate } from '@/utils/index'
+import iconComponentMap from '@/utils/iconComponentMap.js'
 
-const icons = [
-  'airplane',
-  'alarm clock',
-  'anchor',
-  'bug',
-  'car',
-  'eye',
-  'flask',
-  'ghost',
-  'heart',
-  'hippo',
-  'lira',
-  'magnet',
-  'moon',
-  'snowflake',
-  'spock hand',
-  'sun',
-  'trophy',
-  'umbrella',
-]
+const icons = Object.keys(iconComponentMap)
 
 export function generateTileValues(gridSize, theme) {
   // Calculate the number of pairs to generate

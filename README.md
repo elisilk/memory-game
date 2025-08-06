@@ -120,12 +120,10 @@ Specific enhancements I'd like to make (feature requests):
 - [ ] Navigate the tile grid with the arrow keys, and hit the return key to flip a tile over
 - [ ] Add in transitions/animations
   - [ ] from one view to the next
-  - [ ] tiles turning over and back
+  - [x] tiles flipping over and back
     - [Intro to CSS 3D transforms - Card Flip](https://3dtransforms.desandro.com/card-flip) - What a cool effect and an excellent explanation/walkthrough.
-- [ ] Read in the icons programmatically rather than hard-coding a static list. Currently, the hard-coding happens in these places:
-  - @/components/GameboardTile.vue - the list of component import statements
-  - @/components/GameboardTile.vue - the icons object which connects icon names to the respective component name
-  - @/utils/tiles.js - the array of icon names used to generate the tile values
+- [ ] Read in the icons programmatically rather than hard-coding a static list.
+- [x] Have the icons list and their associated components be handled in one place so there is just one source of truth. Solved by using [Async Components](https://vuejs.org/guide/components/async).
 - [ ] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
 
 More general ideas I want to consider:
