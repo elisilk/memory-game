@@ -7,12 +7,16 @@ import FooterSoloPlayer from '@/components/FooterSoloPlayer.vue'
 import EndGameDialogMultiplayer from '@/components/EndGameDialogMultiplayer.vue'
 import EndGameDialogSoloPlayer from '@/components/EndGameDialogSoloPlayer.vue'
 
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useMemoryGameStore } from '@/stores/memoryGame'
 
 const memoryGame = useMemoryGameStore()
 
 const isMultiplayer = computed(() => memoryGame.numPlayers > 1)
+
+onMounted(() => {
+  document.body.dataset.theme = 'primary'
+})
 </script>
 
 <template>
@@ -39,9 +43,6 @@ const isMultiplayer = computed(() => memoryGame.numPlayers > 1)
 
 <style scoped>
 .app__container {
-  --view-color-background: var(--color-background-primary);
-  --view-color-text: var(--color-text-primary);
-
   gap: var(--space-600); /* (m) ? -> (t) ? */
 }
 

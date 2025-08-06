@@ -1,6 +1,11 @@
 <script setup>
+import { onMounted } from 'vue'
 import AppLogo from '@/components/AppLogo.vue'
 import GameCardStart from '@/components/GameCardStart.vue'
+
+onMounted(() => {
+  document.body.dataset.theme = 'secondary'
+})
 </script>
 
 <template>
@@ -19,10 +24,6 @@ import GameCardStart from '@/components/GameCardStart.vue'
 <style scoped>
 .app__container {
   --inline-size-max: var(--inline-size-start-max);
-
-  --view-color-background: var(--color-background-secondary);
-  --view-color-text: var(--color-text-secondary);
-
   gap: var(--space-600); /* (m) ? -> (t) ? */
 }
 

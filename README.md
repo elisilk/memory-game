@@ -133,7 +133,11 @@ Specific enhancements I'd like to make (feature requests):
 - [x] Have the icons list and their associated components be handled in one place so there is just one source of truth. Solved by using [Async Components](https://vuejs.org/guide/components/async).
 - [ ] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
 - [ ] Make sure the app fills up the entire block size of the viewport, especially/including on a mobile device. Or at least, and perhaps better, just make sure to update the `body` background color
-- [ ] Include an open graph image for better sharing of the site
+- [x] Include an open graph image for better sharing of the site
+  - [The Open Graph protocol](https://ogp.me/)
+  - [The Ultimate Guide to OG Image Dimensions (2024 Update)](https://www.ogimage.gallery/libary/the-ultimate-guide-to-og-image-dimensions-2024-update)
+  - [The Complete Guide To Open Graph Meta Tags](https://blankslatedigital.co.uk/blog/web-dev/open-graph-meta-tags/)
+  - [What is Open Graph and how can I use it for my website?](https://www.freecodecamp.org/news/what-is-open-graph-and-how-can-i-use-it-for-my-website/)
 
 More general ideas I want to consider:
 

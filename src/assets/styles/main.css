@@ -149,14 +149,20 @@
 /* Body / App           */
 /* -------------------- */
 
-body {
+body,
+body[data-theme='primary'] {
   color: var(--color-text-primary);
-  background: var(--color-background-primary);
+  background-color: var(--color-background-primary);
 
   font-family: var(--ff-base);
   font-weight: var(--fw-bold);
   line-height: var(--lh-regular);
   letter-spacing: var(--ls-regular);
+}
+
+body[data-theme='secondary'] {
+  color: var(--color-text-secondary);
+  background-color: var(--color-background-secondary);
 }
 
 .app {
@@ -172,13 +178,7 @@ body {
   --inline-size-gutter: var(--inline-size-app-gutter, 1.5rem);
   --block-size-padding: var(--block-size-app-padding, 1.5rem);
 
-  /* colors */
-  --view-color-background: var(--color-background-primary);
-  --view-color-text: var(--color-text-primary);
-
   min-block-size: 100dvh;
-  background: var(--view-color-background);
-  color: var(--view-color-text);
 
   display: grid;
   align-content: center;
