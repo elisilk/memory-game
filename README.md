@@ -35,6 +35,8 @@ Users should be able to:
 | :---------------------------------------------------------------: | :---------------------------------------------------------------: | ------------------------------------------------------------------ |
 |        ![](./screenshots/screenshot-mobile-start-game.png)        |        ![](./screenshots/screenshot-tablet-start-game.png)        | ![](./screenshots/screenshot-desktop-start-game.png)               |
 | ![](./screenshots/screenshot-mobile-just-started-multiplayer.png) | ![](./screenshots/screenshot-tablet-just-started-multiplayer.png) | ![](./screenshots/screenshot-desktop-just-started-multiplayer.png) |
+|   ![](./screenshots/screenshot-mobile-in-game-multiplayer.png)    |   ![](./screenshots/screenshot-tablet-in-game-multiplayer.png)    | ![](./screenshots/screenshot-desktop-in-game-multiplayer.png)      |
+|   ![](./screenshots/screenshot-mobile-results-multiplayer.png)    |   ![](./screenshots/screenshot-tablet-results-multiplayer.png)    | ![](./screenshots/screenshot-desktop-results-multiplayer.png)      |
 
 ### Links
 
@@ -118,14 +120,15 @@ Specific enhancements I'd like to make (feature requests):
 
 - [x] Make it so that after a failed move (a pair was not found), that clicking on one of the turned over tiles immediately starts the next move (and turns over the tile not chosen), rather than waiting for the eval delay to finish. Currently, those two turned over tiles would be in an unplayable state, but can potentially change that.
 - [ ] Navigate the tile grid with the arrow keys, and hit the return key to flip a tile over
-- [ ] Add in transitions/animations
+- [x] Add in transitions/animations
   - [x] from one router view to the next
     - [Vue Router Transitions](https://router.vuejs.org/guide/advanced/transitions)
     - [Vue Transitions](https://vuejs.org/guide/built-ins/transition.html)
     - [Vue School - Vue Router 4 for Everyone: Master Routing in Vue.js - Route Transitions](https://vueschool.io/lessons/route-transitions)
   - [x] tiles flipping over and back
     - [Intro to CSS 3D transforms - Card Flip](https://3dtransforms.desandro.com/card-flip) - What a cool effect and an excellent explanation/walkthrough.
-  - [ ] dialog element opening and closing
+  - [x] dialog element opening and closing
+    - [Animating the Dialog Element](https://frontendmasters.com/blog/animating-dialog/)
 - [ ] Read in the icons programmatically rather than hard-coding a static list.
 - [x] Have the icons list and their associated components be handled in one place so there is just one source of truth. Solved by using [Async Components](https://vuejs.org/guide/components/async).
 - [ ] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
