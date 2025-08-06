@@ -220,6 +220,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
       // save and lock the currently selected tile
       const currentTile = this.getTile(tileId)
       currentTile.playable = false
+      currentTile.highlighted = true
 
       // console.dir(this.previousMove)
 
@@ -274,7 +275,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
 
           // set move tiles to paired and highlighted
           this.setMoveTilesPaired(this.currentMove)
-          this.setMoveTilesHighlighted(this.currentMove)
+          // this.setMoveTilesHighlighted(this.currentMove)
 
           // add to the current player's pairs count
           this.incrementPairsCount(this.currentMove.player)

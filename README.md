@@ -104,7 +104,8 @@ As always, so many cool :sunglasses: things. Here are some of the key resources 
 Specific areas that the solution should be improved (known issues):
 
 - [x] The futbol and sun look too much alike. Replace one with a more distinctive alternative.
-- [x] Figure out what the orange background tiles indicate and build into the solution. Looks like they indicate a match, but so do all the light blue ones. So is the orange just for the latest match? Or, what I am leaning toward, is a temporary indicator that a match was made and that goes away after a certain amount of time.
+- [x] Clarify what the tiles with the orange background indicate
+  - After some fumbling around, it seems the best and clearest design choice is to have both recently turned over tiles initially turn orange as part of the current move. If they are a pair, then they stay orange for a bit (or until the next move starts), and then turn to a light blue background. If they are not a pair, then they simply turn back over.
 - [x] Make all the color values into semantic properties
 - [ ] Make all the sizing/spacing values into semantic properties
 - [ ] Make all the color values into semantic properties
@@ -117,8 +118,14 @@ Specific enhancements I'd like to make (feature requests):
 
 - [x] Make it so that after a failed move (a pair was not found), that clicking on one of the turned over tiles immediately starts the next move (and turns over the tile not chosen), rather than waiting for the eval delay to finish. Currently, those two turned over tiles would be in an unplayable state, but can potentially change that.
 - [ ] Navigate the tile grid with the arrow keys, and hit the return key to flip a tile over
-- [ ] Transitions/animations from one view to the next and with the tiles turning over and back, and ...
-- [ ] Read in the icons programmatically rather than hard-coding a static list
+- [ ] Add in transitions/animations
+  - [ ] from one view to the next
+  - [ ] tiles turning over and back
+    - [Intro to CSS 3D transforms - Card Flip](https://3dtransforms.desandro.com/card-flip) - What a cool effect and an excellent explanation/walkthrough.
+- [ ] Read in the icons programmatically rather than hard-coding a static list. Currently, the hard-coding happens in these places:
+  - @/components/GameboardTile.vue - the list of component import statements
+  - @/components/GameboardTile.vue - the icons object which connects icon names to the respective component name
+  - @/utils/tiles.js - the array of icon names used to generate the tile values
 - [ ] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
 
 More general ideas I want to consider:

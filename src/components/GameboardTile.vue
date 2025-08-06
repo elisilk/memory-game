@@ -82,44 +82,86 @@ function handleChange() {
       { 'gameboard-tile--paired': isAPair, 'gameboard-tile--highlighted': isHighlighted },
     ]"
   >
-    <input
-      class="gameboard-tile-input"
-      type="checkbox"
-      :id="tileId"
-      :name="tileId"
-      :aria-labelledby="tileLabelId"
-      :disabled="!isPlayable"
-      v-model="isFaceUp"
-      @change="handleChange"
-    />
-    <label class="gameboard-tile-label sr-only" :id="tileLabelId">{{ tileLabel }}</label>
-    <component v-if="isFaceUp" :is="tileType" class="gameboard-tile-value">{{
-      tileValue
-    }}</component>
+    <label class="gameboard-tile__label" :id="tileLabelId">
+      <input
+        class="gameboard-tile__input"
+        type="checkbox"
+        :id="tileId"
+        :name="tileId"
+        :disabled="!isPlayable"
+        v-model="isFaceUp"
+        @change="handleChange"
+      />
+      <div class="gameboard-tile__face gameboard-tile__face--front">
+        <span class="sr-only">{{ tileLabel }}</span>
+      </div>
+      <div class="gameboard-tile__face gameboard-tile__face--back">
+        <component v-if="isFaceUp" :is="tileType" class="gameboard-tile__value">{{
+          tileValue
+        }}</component>
+      </div>
+    </label>
   </div>
 </template>
 
 <style scoped>
 .gameboard-tile {
-  cursor: pointer;
-  background: var(--color-background-tile-top);
-  color: var(--color-text-secondary);
-
+  --_tile-border-radius: var(--tile-border-radius, var(--br-900));
   aspect-ratio: 1 / 1;
   inline-size: 100%;
-  border-radius: var(--br-900);
+  perspective: 600px;
+}
 
+.gameboard-tile__label {
+  position: relative;
+  display: block;
+  block-size: 100%;
+  inline-size: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.gameboard-tile__face {
+  position: absolute;
+  block-size: 100%;
+  inline-size: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--_tile-border-radius);
+}
+
+.gameboard-tile__face--front {
+  background: var(--color-background-tile-top);
+}
+
+.gameboard-tile__face--back {
+  background: var(--color-background-tile-paired);
+  color: var(--color-text-secondary);
+  transform: rotateY(180deg);
   display: grid;
-  place-items: center;
-  grid-template-areas: 'stack';
+  place-content: center;
 }
 
-.gameboard-tile > * {
-  grid-area: stack;
+.gameboard-tile--highlighted .gameboard-tile__face--back {
+  background: var(--color-background-current);
 }
 
-.gameboard-tile-input {
+.gameboard-tile__label:has(:checked) {
+  transform: rotateY(180deg);
+}
+
+.gameboard-tile:has(:hover) .gameboard-tile__face--front,
+.gameboard-tile:has(:focus-visible) .gameboard-tile__face--front {
+  background: var(--color-background-active);
+}
+
+.gameboard-tile:has(:focus-visible) .gameboard-tile__face--front {
+  outline: 2px dashed var(--color-background-active);
+  outline-offset: 2px;
+}
+
+.gameboard-tile__input {
   cursor: pointer;
+  position: absolute;
   margin: 0;
   padding: 0;
   opacity: 0;
@@ -128,37 +170,18 @@ function handleChange() {
   z-index: 1;
 }
 
-.gameboard-tile-value {
-  display: block;
+.gameboard-tile__value {
+  /* display: block; */
   font-size: var(--text-preset4-fs);
 }
 
-.gameboard--6x6 .gameboard-tile-value {
+.gameboard--6x6 .gameboard-tile__value {
   font-size: var(--text-preset7-fs);
 }
 
-.gameboard-tile:hover,
-.gameboard-tile:has(:focus-visible) {
-  background: var(--color-background-active);
-}
-
-.gameboard-tile:has(:focus-visible) {
-  outline: 2px dashed var(--color-background-active);
-  outline-offset: 2px;
-}
-
-.gameboard-tile:has(:disabled) {
+/* .gameboard-tile:has(:disabled) {
   pointer-events: none;
-}
-
-.gameboard-tile:has(:checked),
-.gameboard-tile:has(:checked).gameboard-tile--highlighted {
-  background: var(--color-background-current);
-}
-
-.gameboard-tile--paired:has(:checked) {
-  background: var(--color-background-tile-paired);
-}
+} */
 
 .gameboard-tile svg {
   inline-size: 100%;
@@ -174,11 +197,11 @@ function handleChange() {
 
 /* viewport: mobile -> tablet */
 @media (min-width: 40rem) {
-  .gameboard-tile-value {
+  .gameboard-tile__value {
     font-size: var(--text-preset1-fs);
   }
 
-  .gameboard--6x6 .gameboard-tile-value {
+  .gameboard--6x6 .gameboard-tile__value {
     font-size: var(--text-preset3-fs);
   }
 
