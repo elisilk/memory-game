@@ -117,7 +117,7 @@ function handleChange() {
   display: block;
   block-size: 100%;
   inline-size: 100%;
-  transition: transform 1s;
+  transition: transform 0.25s;
   transform-style: preserve-3d;
 }
 
