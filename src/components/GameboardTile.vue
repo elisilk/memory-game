@@ -151,16 +151,13 @@ function handleChange() {
   pointer-events: none;
 }
 
-.gameboard-tile:has(:checked) {
-  background: var(--color-background-active);
+.gameboard-tile:has(:checked),
+.gameboard-tile:has(:checked).gameboard-tile--highlighted {
+  background: var(--color-background-current);
 }
 
 .gameboard-tile--paired:has(:checked) {
   background: var(--color-background-tile-paired);
-}
-
-.gameboard-tile:has(:checked).gameboard-tile--highlighted {
-  background: var(--color-background-current);
 }
 
 .gameboard-tile svg {
