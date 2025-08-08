@@ -130,8 +130,18 @@ Specific enhancements I'd like to make (feature requests):
   - [x] tiles flipping over and back
     - [Intro to CSS 3D transforms - Card Flip](https://3dtransforms.desandro.com/card-flip) - What a cool effect and an excellent explanation/walkthrough.
   - [x] dialog element opening and closing
+    - [ ] Clean up the way the dialog animates opening and closing in Safari. And implement JS to enable closing the dialog by clicking outside since `closedby` is not supported.
+      - [caniuse - HTML element: dialog: closedby](https://caniuse.com/mdn-html_elements_dialog_closedby)
+    - [ ] Be mindful that `allow-discrete` is not supported in Firefox, and so consider alternative implementations
+      - [caniuse - `allow-discrete`](https://caniuse.com/?search=allow-discrete)
+    - [We can now transition to and from display: none](https://www.youtube.com/watch?v=vmDEHAzj2XE&ab_channel=KevinPowell)
+    - [Animate from display none](https://www.youtube.com/watch?v=4prVdA7_6u0&ab_channel=KevinPowell)
+    - [Animating dialog and popover elements with CSS @starting-style](https://blog.logrocket.com/animating-dialog-popover-elements-css-starting-style/)
+    - [The Dialog Element with Entry _and_ Exit Animations](https://frontendmasters.com/blog/the-dialog-element-with-entry-and-exit-animations/)
     - [Animating the Dialog Element](https://frontendmasters.com/blog/animating-dialog/)
+
   - [ ] Be mindful of [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) preferences
+
 - [ ] Read in the icons programmatically rather than hard-coding a static list.
 - [x] Have the icons list and their associated components be handled in one place so there is just one source of truth. Solved by using [Async Components](https://vuejs.org/guide/components/async).
 - [x] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
