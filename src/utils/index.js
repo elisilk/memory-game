@@ -6,8 +6,22 @@ function addLeadingZeros(value, numPlaces = 2) {
   return String(value).padStart(numPlaces, '0')
 }
 
-export function formatElapsedTime(ms) {
-  const seconds = Math.floor(ms / 1000)
+export function msToSec(ms, floor = true) {
+  return floor ? Math.floor(ms / 1000) : Math.round(ms / 1000)
+}
+
+export function formatElapsedTime(sec) {
+  const minutes = Math.floor(sec / 60)
+  const s = sec % 60
+
+  let formattedTime = ''
+  formattedTime += `${addLeadingZeros(minutes, 1)}:${addLeadingZeros(s)}`
+
+  return formattedTime
+}
+
+export function formatElapsedTimeMs(ms, floor = true) {
+  const seconds = msToSec(ms, floor)
   const minutes = Math.floor(seconds / 60)
   const s = seconds % 60
 

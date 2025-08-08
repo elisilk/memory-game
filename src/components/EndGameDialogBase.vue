@@ -50,8 +50,13 @@ watch(
       </div>
 
       <div class="end-game-dialog__stats">
-        <slot></slot>
+        <h3 class="stats-group__heading sr-only">This Game</h3>
+        <div class="stats-group__values">
+          <slot></slot>
+        </div>
       </div>
+
+      <slot name="bests"></slot>
 
       <menu class="end-game-dialog__menu text-preset8">
         <li>
@@ -105,7 +110,8 @@ watch(
   font-size: var(--text-preset12-fs);
 }
 
-.end-game-dialog__stats {
+.end-game-dialog__stats,
+.stats-group__values {
   display: grid;
   gap: var(--space-100); /* (m) 8px -> (t) 16px */
 }
@@ -147,7 +153,8 @@ watch(
     gap: var(--space-700); /* (m) 24px -> (t) 56px */
   }
 
-  .end-game-dialog__stats {
+  .end-game-dialog__stats,
+  .stats-group__values {
     gap: var(--space-200); /* (m) 8px -> (t) 16px */
   }
 

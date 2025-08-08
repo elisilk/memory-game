@@ -74,6 +74,7 @@
 
   --text-preset13-fs: var(--fs-100);
   --text-preset13-ls: var(--ls-expanded);
+  --text-preset14-fs: var(--fs-50);
 }
 
 /* viewport: mobile -> tablet */

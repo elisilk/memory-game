@@ -1,6 +1,6 @@
-const localStorageKey = 'memoryGame'
+const localStorageKey = 'memoryGameSoloBests'
 
-export function getSoloBests() {
+export function getSoloBestsFromLocalStorage() {
   if (!storageAvailable('localStorage')) {
     console.error('Local storage not available')
     return null
@@ -8,27 +8,12 @@ export function getSoloBests() {
   return JSON.parse(localStorage.getItem(localStorageKey))
 }
 
-export function setSoloBests(newBests) {
+export function setSoloBestsInLocalStorage(newBests) {
   if (!storageAvailable('localStorage')) {
     console.error('Local storage not available')
     return
   }
   localStorage.setItem(localStorageKey, JSON.stringify(newBests))
-}
-
-export function isNewSoloBest(theme, gridSize, statLabel, statValue, currentSoloBests) {
-  // if not one of the tracked stats, then return false
-  if (!(statLabel === 'timeElapsed' || statLabel === 'numMoves')) return false
-
-  const existingSoloBest = currentSoloBests.find(
-    (best) => best.theme === theme && best.gridSize === gridSize,
-  )
-
-  // if no existing best, then return true
-  if (!existingSoloBest) return true
-
-  // otherwise, return whether the new value is as good
-  return statValue <= existingSoloBest[statLabel]
 }
 
 // const soloBestsExample = [
@@ -58,7 +43,7 @@ export function isNewSoloBest(theme, gridSize, statLabel, statValue, currentSolo
 //   },
 // ]
 
-function storageAvailable(type) {
+export function storageAvailable(type) {
   let storage
   try {
     storage = window[type]

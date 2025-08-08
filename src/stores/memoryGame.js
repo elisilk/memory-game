@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { shuffle } from '@/utils/index'
+import { msToSec, shuffle } from '@/utils/index'
 import { generateTileValues } from '@/utils/tiles'
 
 const turnEvalDelay = 2000
@@ -20,16 +20,17 @@ export const useMemoryGameStore = defineStore('memoryGame', {
     /** @type { player: number, tile1: Object, tile2: Object } */
     previousMove: null,
     /** @type number */
-    timeStarted: null,
+    timeStartedMs: null,
     /** @type number */
-    timeLatest: null,
+    timeLatestMs: null,
     /** @type number */
     timerId: null,
     /** @type number */
     delayId: null,
     /** @type {{ player: number, numMoves: number, numPairs: number }[]} */
     stats: [],
-    soloBests: null,
+    /** @type {{ player: number, numMoves: number, numPairs: number }[]} */
+    soloBests: [],
   }),
   getters: {
     gameboardSize(state) {
@@ -54,7 +55,8 @@ export const useMemoryGameStore = defineStore('memoryGame', {
       return (tileId) => state.testTileArray.find((tile) => tile.id === tileId)
     },
     getTimeElapsed(state) {
-      return this.timeLatest - state.timeStarted
+      // returns time value in seconds (using floor function)
+      return msToSec(this.timeLatestMs - state.timeStartedMs)
     },
     allPairsFound(state) {
       return state.gameboard.filter((tile) => !tile.paired).length === 0
@@ -65,16 +67,44 @@ export const useMemoryGameStore = defineStore('memoryGame', {
     statsSortedByNumPairs(state) {
       return [...state.stats].sort((a, b) => b.numPairs - a.numPairs)
     },
+    getSoloBests(state) {
+      return state.soloBests.find(
+        (best) => best.theme === state.theme && best.gridSize === state.gridSize,
+      )
+    },
+    isNewSoloBest(state) {
+      // -1 - no, current state is not a new best
+      // 0 - sort of, current stat is tied with existing best
+      // 1 - yes, current stat is a new best
+      return (statLabel) => {
+        // if not one of the tracked stats, then return false
+        if (statLabel !== 'timeElapsed' && statLabel !== 'numMoves') return -1
+
+        const existingBests = this.getSoloBests
+
+        // if no current solo bests, then return true
+        if (!existingBests || !existingBests[statLabel]) return 1
+
+        const existingBestValue =
+          statLabel === 'timeElapsed' ? existingBests.timeElapsed : existingBests.numMoves
+        const newValue =
+          statLabel === 'timeElapsed' ? state.getTimeElapsed : state.stats[0].numMoves
+
+        if (newValue < existingBestValue) return 1
+        else if (newValue === existingBestValue) return 0
+        else return -1
+      }
+    },
   },
   actions: {
     startTimer() {
       // reset the start time
-      this.timeStarted = Date.now()
-      this.timeLatest = this.timeStarted
+      this.timeStartedMs = Date.now()
+      this.timeLatestMs = this.timeStartedMs
 
       // start a new timer
       this.timerId = setInterval(() => {
-        this.timeLatest = Date.now()
+        this.timeLatestMs = Date.now()
       }, timerUpdateDelay)
     },
     initializeGame(newGame) {
@@ -99,8 +129,8 @@ export const useMemoryGameStore = defineStore('memoryGame', {
       this.stats.forEach((item, index) => (item.player = index + 1))
 
       // reset the timer
-      this.timeStarted = null
-      this.timeLatest = null
+      this.timeStartedMs = null
+      this.timeLatestMs = null
       this.timerId = null
     },
     resetAndShuffleTiles() {
@@ -143,7 +173,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
         clearInterval(this.timerId)
         this.timerId = null
       }
-      this.timeLatest = Date.now()
+      this.timeLatestMs = Date.now()
     },
     resetPreviousMoveTile(previousTileId, paired) {
       const previousTile = this.getTile(previousTileId)
@@ -215,7 +245,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
     },
     makeMove(tileId) {
       // start the timer after the first move
-      if (!this.timeStarted) this.startTimer()
+      if (!this.timeStartedMs) this.startTimer()
       // NOTE: Could choose not to start the timer if it's a multiplayer game, since that stat is not used. For right now, I kept it in, just in case may want to use it later.
 
       // save and lock the currently selected tile
@@ -303,6 +333,44 @@ export const useMemoryGameStore = defineStore('memoryGame', {
 
       // Both moves have been made
       console.error('illegal move:', 'can only choose 2 tiles at a time')
+    },
+    updateSoloBest(statLabel, newStatValue) {
+      // if not one of the tracked stats, then return without making any updates
+      if (!(statLabel === 'timeElapsed' || statLabel === 'numMoves')) return null
+
+      if (!this.getSoloBests) {
+        // if no current solo bests for this game config, then add it in
+        const newBestObj = {
+          theme: this.theme,
+          gridSize: this.gridSize,
+        }
+        newBestObj[statLabel] = newStatValue
+        this.soloBests.push(newBestObj)
+        // return the old value (in this case, undefined)
+        return undefined
+      } else {
+        const oldSoloBest = this.getSoloBests[statLabel]
+        // otherwise, just set a new value
+        this.getSoloBests[statLabel] = newStatValue
+        // return the old value
+        return oldSoloBest
+      }
+    },
+    updateSoloBests() {
+      // if game not over, then don't make any updates
+      if (!this.allPairsFound) return
+
+      const oldSoloBests = {}
+
+      // if a new best for time elapsed, then update it
+      if (this.isNewSoloBest('timeElapsed') === 1)
+        oldSoloBests['timeElapsed'] = this.updateSoloBest('timeElapsed', this.getTimeElapsed)
+
+      // if a new best for num moves, then update it
+      if (this.isNewSoloBest('numMoves') === 1)
+        oldSoloBests['numMoves'] = this.updateSoloBest('numMoves', this.stats[0].numMoves)
+
+      return oldSoloBests
     },
   },
 })
