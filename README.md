@@ -112,7 +112,7 @@ Specific areas that the solution should be improved (known issues):
   - After some fumbling around, it seems the best and clearest design choice is to have both recently turned over tiles initially turn orange as part of the current move. If they are a pair, then they stay orange for a bit (or until the next move starts), and then turn to a light blue background. If they are not a pair, then they simply turn back over.
 - [x] Make all the color values into semantic properties
 - [ ] Make all the sizing/spacing values into semantic properties
-- [ ] Implement the left alignment of the footer stat containers in the multiplayer tablet view
+- [x] Implement the left alignment of the footer stat containers in the multiplayer tablet view
 - [ ] Better implement the fluid padding of the icons/numbers within the circular tile
 - [ ] Consider including a much broader set of icons (currently there are 18 icons, which is just enough for the 6x6 games), so there is more variation in which ones are chosen for any individual game.
 - [ ] Consider whether to make the default screen the solo player 4x4 grid, as that is the one used in the Frontend Mentor design screenshot and so will be used for the design comparison.

@@ -114,6 +114,12 @@ const statValueFormatted = computed(() => {
     align-items: center;
   }
 
+  .stat__container--multiplayer {
+    display: grid;
+    justify-items: start;
+    row-gap: var(--space-100);
+  }
+
   .stat__label {
     font-size: var(--text-preset9-fs);
   }
@@ -125,6 +131,12 @@ const statValueFormatted = computed(() => {
 
 /* viewport: tablet -> desktop */
 @media (min-width: 60rem) {
+  .stat__container--multiplayer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .stat__container--current::after {
     content: 'current turn';
     color: var(--color-text-heading);

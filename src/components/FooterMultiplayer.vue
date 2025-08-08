@@ -13,6 +13,7 @@ const memoryGame = useMemoryGameStore()
       statType="pairs"
       :player="item.player"
       :key="'stat-value-player' + item.player"
+      class="stat__container--multiplayer"
     />
   </div>
 </template>
