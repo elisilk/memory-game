@@ -83,7 +83,9 @@ watch(
 
     <template v-if="showBests" #bests>
       <div class="end-game-dialog__bests">
-        <h3 class="stats-group__heading">Your Bests</h3>
+        <h3 class="stats-group__heading">
+          Your Bests ({{ memoryGame.gridSize }} {{ memoryGame.theme }})
+        </h3>
         <div class="stats-group__values">
           <StatContainerBest
             :statLabel="statLabelFormatted('timeElapsed', 'Time Elapsed')"

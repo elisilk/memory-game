@@ -91,10 +91,12 @@ As always, so many cool :sunglasses: things. Here are some of the key resources 
   - [Equal Columns With Flexbox: It’s More Complicated Than You Might Think](https://css-tricks.com/equal-columns-with-flexbox-its-more-complicated-than-you-might-think/)
   - [Overriding Default Button Styles](https://css-tricks.com/overriding-default-button-styles/)
   - [CSS Triangle](https://css-tricks.com/snippets/css/css-triangle/)
+  - [Auto-Sizing Columns in CSS Grid: `auto-fill` vs `auto-fit`](https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/)
 - JavaScript
   - [How to clone an array in JavaScript](https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/)
   - [How to create an array containing 1...N](https://stackoverflow.com/questions/3746725/how-to-create-an-array-containing-1-n)
   - [How to randomize (shuffle) a JavaScript array?](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+  - [4 Ways to Populate an Array in JavaScript](https://medium.com/@wisecobbler/4-ways-to-populate-an-array-in-javascript-836952aea79f)
 - HTML Elements
   - [`<menu>`: The Menu element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/menu)
   - [`<dialog>`: The Dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog)
@@ -129,9 +131,12 @@ Specific enhancements I'd like to make (feature requests):
     - [Intro to CSS 3D transforms - Card Flip](https://3dtransforms.desandro.com/card-flip) - What a cool effect and an excellent explanation/walkthrough.
   - [x] dialog element opening and closing
     - [Animating the Dialog Element](https://frontendmasters.com/blog/animating-dialog/)
+  - [ ] Be mindful of [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) preferences
 - [ ] Read in the icons programmatically rather than hard-coding a static list.
 - [x] Have the icons list and their associated components be handled in one place so there is just one source of truth. Solved by using [Async Components](https://vuejs.org/guide/components/async).
-- [ ] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
+- [x] Save to local storage the best all-time statistics for number of moves and time elapsed (for that device) and display them in the results, especially if they get bested
+  - [Using the Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
+  - This was not that straightforward for me, but eventually I made it work. Had to add a bunch of stuff, especially to check the new values versus the old ones, so a good amount of logic involved in that.
 - [x] Make sure the app fills up the entire block size of the viewport, especially/including on a mobile device. Or at least, and perhaps better, just make sure to update the `body` background color
   - So my solution to this was not straightforward. I looked into a nummber of different ideas, but ultimately landed on setting the `background-color` of the `body` (rather than the App container) through the use of a data attribute that I could then style in my global css.
     - Viewport dimensions
