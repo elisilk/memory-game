@@ -168,7 +168,7 @@ body[data-theme='secondary'] {
 
 .app {
   inline-size: 100%;
-  min-block-size: 100dvh;
+  min-block-size: 100dvb;
 }
 
 .app__container {
@@ -179,7 +179,7 @@ body[data-theme='secondary'] {
   --inline-size-gutter: var(--inline-size-app-gutter, 1.5rem);
   --block-size-padding: var(--block-size-app-padding, 1.5rem);
 
-  min-block-size: 100dvh;
+  min-block-size: 100svb;
 
   display: grid;
   align-content: center;
