@@ -107,6 +107,13 @@ export const useMemoryGameStore = defineStore('memoryGame', {
         this.timeLatestMs = Date.now()
       }, timerUpdateDelay)
     },
+    stopTimer() {
+      if (this.timerId) {
+        clearInterval(this.timerId)
+        this.timerId = null
+      }
+      this.timeLatestMs = Date.now()
+    },
     initializeGame(newGame) {
       newGame
         ? // generate new set of tiles
@@ -129,6 +136,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
       this.stats.forEach((item, index) => (item.player = index + 1))
 
       // reset the timer
+      this.stopTimer()
       this.timeStartedMs = null
       this.timeLatestMs = null
       this.timerId = null
@@ -169,11 +177,7 @@ export const useMemoryGameStore = defineStore('memoryGame', {
       this.initializeGame(false)
     },
     endGame() {
-      if (this.timerId) {
-        clearInterval(this.timerId)
-        this.timerId = null
-      }
-      this.timeLatestMs = Date.now()
+      this.stopTimer()
     },
     resetPreviousMoveTile(previousTileId, paired) {
       const previousTile = this.getTile(previousTileId)

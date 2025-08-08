@@ -23,6 +23,7 @@ function closeMenu() {
 }
 
 function newGame() {
+  memoryGame.stopTimer()
   // console.log('starting a new game (back to start menu)')
   router.push({ name: 'Start' })
 }
