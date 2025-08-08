@@ -168,7 +168,6 @@ body[data-theme='secondary'] {
 
 .app {
   inline-size: 100%;
-  min-block-size: 100dvb;
 }
 
 .app__container {
