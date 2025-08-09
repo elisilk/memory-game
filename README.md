@@ -151,8 +151,10 @@ Specific enhancements I'd like to make (feature requests):
   - So my solution to this was not straightforward. I looked into a nummber of different ideas, but ultimately landed on setting the `background-color` of the `body` (rather than the App container) through the use of a data attribute that I could then style in my global css.
     - Viewport dimensions
       - [The large, small, and dynamic viewport units](https://web.dev/blog/viewport-units)
-      - [The trick to viewport units on mobile](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
       - [Understanding `dvh`: The CSS Dynamic Viewport Height](https://mayank1513.medium.com/understanding-dvh-the-css-dynamic-viewport-height-9ddf70a77c6c)
+      - [The trick to viewport units on mobile](https://css-tricks.com/the-trick-to-viewport-units-on-mobile/)
+      - [CSS fix for 100vh in mobile WebKit](https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/)
+      - [The Height Enigma: Unraveling the mystery of percentage-based heights in CSS](https://www.joshwcomeau.com/css/height-enigma/)
     - The Apple iPhone "Notch"
       - [Rendering Sites Fullscreen in Safari on iPhone X / Introducing “User Agent Variables” (CSS Environment Variables)](https://www.bram.us/2017/09/14/introducing-user-agent-variables-rendering-sites-fullscreen-in-safari-on-iphone-x/)
     - Using data attributes
