@@ -2,9 +2,9 @@
 
 A responsive memory-matching game built with Vue, Pinia, and Vue Router. The project was an opportunity to move beyond individual components and explore application state, routing, persistence, and more structured Vue application architecture.
 
-**Status:** Complete
+**[Live Site](https://elisilk.github.io/memory-game/)** · **[Frontend Mentor Solution](https://www.frontendmentor.io/solutions/memory-game-implemented-with-vue-and-pinia-9hFdn-RHG3)**
 
-[View the live site](https://elisilk.github.io/memory-game/) · [View the source code](https://github.com/elisilk/memory-game)
+![Memory game desktop screenshot](./screenshots/screenshot-desktop-in-game-multiplayer.png)
 
 ## Overview
 
