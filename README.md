@@ -73,9 +73,11 @@ I also use VS Code file nesting to keep related files grouped together in the pr
 
 ## Development Workflow
 
-The project uses npm for dependency management and Vite for development and builds.
+The project uses npm for dependency management and Vite for development and production builds.
 
-GitHub Actions is used to automate the project's deployment workflow. The repository also includes project-level configuration for ESLint, Prettier, and VS Code.
+Deployment to GitHub Pages is automated with GitHub Actions. A push to the `main` branch installs dependencies with `npm ci`, builds the production application, uploads the resulting `dist` directory as a Pages artifact, and deploys it to GitHub Pages. The workflow can also be triggered manually from GitHub Actions.
+
+The repository also includes project-level configuration for ESLint, Prettier, and VS Code, including file nesting to keep related files organized in the editor.
 
 ## Accessibility and Responsive Design
 
