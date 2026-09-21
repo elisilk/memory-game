@@ -1,6 +1,6 @@
 # Memory Game
 
-A responsive memory-matching game built with Vue, Pinia, and Vue Router. The project was an opportunity to move beyond individual components and explore application state, routing, persistence, and more structured Vue application architecture.
+A responsive memory-matching game built with Vue, Pinia, and Vue Router. The project provided an opportunity to deepen my experience with Vue application architecture, centralized state management, routing, persistence, and interactive game logic.
 
 **[Live Site](https://elisilk.github.io/memory-game/)** · **[Frontend Mentor Solution](https://www.frontendmentor.io/solutions/memory-game-implemented-with-vue-and-pinia-9hFdn-RHG3)**
 
@@ -10,19 +10,21 @@ A responsive memory-matching game built with Vue, Pinia, and Vue Router. The pro
 
 This project is a solution to the [Frontend Mentor Memory Game challenge](https://www.frontendmentor.io/challenges/memory-game-vse4WFPvM).
 
-The challenge provides a complete visual design and interaction specification for a memory game that supports solo and multiplayer play, different grid sizes, and number or icon-based tiles. I used the project primarily as an opportunity to deepen my experience with Vue and Pinia and to learn Vue Router.
+The challenge provides a visual design and interaction specification for a memory game supporting solo and multiplayer play, different grid sizes, and number- or icon-based themes.
+
+I used the project to move beyond primarily interface-focused implementations and explore how a Vue application can be organized around shared state, multiple views, persistent data, and coordinated user interactions.
 
 ## Features
 
 - Responsive layouts for mobile, tablet, and desktop
 - Solo and multiplayer game modes
 - 4×4 and 6×6 game grids
-- Number and icon-based game themes
+- Number- and icon-based game themes
 - Game state managed with Pinia
-- Multiple application views managed with Vue Router
-- Persistent best-game statistics using localStorage
+- Separate setup and gameplay views using Vue Router
+- Persistent solo-game statistics using localStorage
 - Responsive menu and game configuration controls
-- Accessible labels and interactions
+- Accessible labeling and native form controls
 - Responsive handling of the game viewport and page background
 
 ## Built With
@@ -41,49 +43,98 @@ The challenge provides a complete visual design and interaction specification fo
 
 ## Technical Highlights
 
-### Application State with Pinia
+### Centralized Game State with Pinia
 
-The project uses Pinia to manage state that needs to be shared across components, including game configuration, board state, player information, moves, and game progress.
+The project uses Pinia to centralize game state and coordinate game logic across multiple components.
 
-Using a dedicated store helped separate game logic from individual UI components and provided a clearer structure for coordinating interactions across the application.
+The store manages:
+
+- Board generation and shuffling
+- Game configuration
+- Tile selection and matching
+- Player turns and statistics
+- Move counts
+- Timer state
+- Game completion
+- Restarting and starting new games
+- Best-statistics comparisons and updates
+
+Centralizing this logic helps separate the rules and state transitions of the game from the components responsible for displaying the interface.
+
+### Game Logic and State Transitions
+
+The matching process coordinates multiple steps, including recording selected tiles, evaluating pairs, updating player statistics, and progressing through the game.
+
+When two selected tiles do not match, the implementation temporarily preserves the move state before resetting the relevant tiles. This creates a short delay during which players can see the evaluated pair.
+
+The project provided practice with coordinating sequential interactions and managing state that changes over the course of a game.
 
 ### Routing with Vue Router
 
-This was one of my first projects where routing was an explicit part of the application architecture.
+Vue Router separates the game's setup and gameplay views.
 
-I used Vue Router to separate the game's different views and explored Vue Router's memory history mode for the deployed application.
+The application uses distinct routes for configuring a game and playing it, while Pinia provides the shared state needed to coordinate the application.
+
+This was an opportunity to gain practical experience with routing and organizing a Vue application into multiple views rather than treating the entire interface as a single component.
 
 ### Persistent Game Statistics
 
-The application stores best game statistics in localStorage so that players can retain their best results between sessions.
+The application stores solo-game statistics in localStorage so that players can retain their best results between sessions.
 
-Implementing this required handling the relationship between the current game state, previously stored results, and newly completed games rather than simply writing and reading a single value.
+When a solo game is completed, the application compares the result with the existing best statistics for the relevant game configuration. Improved results are then updated and saved.
 
-### Responsive Game Interface
+This required coordinating persistent data with the current game state and handling different game configurations rather than simply storing a single global score.
 
-The game uses CSS Grid and responsive sizing to accommodate different board configurations and screen sizes.
+### Reusable Components and Utilities
 
-I also had to account for differences in viewport behavior on mobile devices. Rather than relying entirely on the application's root container for the page background, the application updates the document background based on the active view.
+The project separates recurring interface patterns and supporting logic into reusable components and utilities.
 
-### Component and Project Organization
+Examples include:
 
-The project uses a structured Vue component architecture and separates application concerns into reusable components, views, stores, and supporting modules.
+- Shared dialog structure for end-game results
+- Reusable buttons and statistics displays
+- A utility for generating and shuffling tile values
+- Dynamic mapping of game values to icon components
+- A media-query composable for responsive interface behavior
 
-I also use VS Code file nesting to keep related files grouped together in the project tree, making the structure easier to navigate.
+These patterns helped keep responsibilities separated as the application grew beyond a small collection of individual components.
+
+### Responsive Interface
+
+The game uses CSS Grid and Flexbox to accommodate different board configurations and screen sizes.
+
+The application also responds to viewport changes and adjusts the page background according to the active view. This required considering the relationship between the Vue application, the document, and the browser viewport rather than relying only on the root application container.
+
+## Accessibility and Responsive Design
+
+Accessibility considerations include:
+
+- Native form controls for tile interactions
+- Labels associated with interactive tile inputs
+- Visible focus styling
+- Accessible labeling for interface controls
+- Responsive layouts across different screen sizes
+
+The project uses native checkbox inputs for tile selection rather than relying exclusively on click handlers attached to non-interactive elements.
+
+Further improvements could include more advanced keyboard navigation within the game board and additional testing with assistive technologies.
 
 ## Development Workflow
 
 The project uses npm for dependency management and Vite for development and production builds.
 
-Deployment to GitHub Pages is automated with GitHub Actions. A push to the `main` branch installs dependencies with `npm ci`, builds the production application, uploads the resulting `dist` directory as a Pages artifact, and deploys it to GitHub Pages. The workflow can also be triggered manually from GitHub Actions.
+Deployment to GitHub Pages is automated with GitHub Actions. A push to the `main` branch:
 
-The repository also includes project-level configuration for ESLint, Prettier, and VS Code, including file nesting to keep related files organized in the editor.
+1. Checks out the repository.
+2. Sets up Node.js and the npm cache.
+3. Installs dependencies with `npm ci`.
+4. Builds the production application.
+5. Uploads the resulting `dist` directory as a Pages artifact.
+6. Deploys the artifact to GitHub Pages.
 
-## Accessibility and Responsive Design
+The workflow can also be triggered manually from the GitHub Actions interface.
 
-Accessibility was considered throughout the implementation, including semantic HTML, accessible labeling of interactive controls, and responsive behavior across different screen sizes.
-
-The project also includes planned improvements around keyboard navigation of the game board and respecting `prefers-reduced-motion` for animations.
+The repository includes project-level configuration for ESLint, Prettier, and VS Code. VS Code file nesting is used to keep related files organized in the editor.
 
 ## Screenshots
 
@@ -96,29 +147,31 @@ The project also includes planned improvements around keyboard navigation of the
 
 ## Continued Development
 
-There are several areas I would consider revisiting in a future iteration:
+Potential future improvements include:
 
-- Improve keyboard navigation within the game board
-- Add and refine transitions and tile-flip animations
-- Respect `prefers-reduced-motion` when animations are introduced
-- Further refine component reuse and shared UI components
-- Expand the available icon set
-- Continue refining responsive behavior and visual details
+- Further refining keyboard navigation within the game board
+- Supporting `prefers-reduced-motion` for animations
+- Refining tile-flip transitions
+- Expanding the available icon set
+- Continuing to refine responsive behavior and visual details
+
+These items are not required for the current implementation but represent areas for possible future exploration.
 
 ## What I Learned
 
-This project helped me move from building primarily interface-focused projects toward thinking more explicitly about application architecture.
+This project helped me move from primarily interface-focused development toward thinking more explicitly about application architecture and state management.
 
 In particular, I gained experience with:
 
 - Managing shared application state with Pinia
 - Structuring a multi-view Vue application
-- Working with Vue Router
+- Using Vue Router
+- Coordinating game state and sequential interactions
 - Persisting application data with localStorage
-- Coordinating game state and user interactions
+- Comparing and updating stored statistics
+- Organizing a growing Vue codebase into components, views, stores, and utilities
 - Building responsive interfaces with CSS Grid
-- Organizing a growing Vue codebase into components, views, and stores
-- Using automated workflows for project deployment
+- Using GitHub Actions to automate production builds and deployment
 
 ## Credits
 
